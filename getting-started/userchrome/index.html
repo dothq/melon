@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+      <meta charset="UTF-8">
+        <link rel="stylesheet" href="/melon/main.css">
+      
+        <link rel="icon" href="https://www.dothq.co/favicon.png">
+      
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        <title> Userchrome | Melon docs </title> 
+    </head>
+    <body>
+
+      
+    <script>
+         fetch('https://api.github.com/repos/dothq/melon/releases/latest')
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            let release_name = data.name;
+            let html_url = data.html_url;
+            release.innerHTML = `<a href='${html_url}'>${release_name}</a>`;
+          });
+    </script>
+      
+    <main>
+
+      
+
+        <nav>
+          
+            <a href="&#x2F;melon&#x2F;">
+            <img src="https://camo.githubusercontent.com/d8b2046aa769e171cb4c89d0f86dfb52c7f677ff287c2b5ac9451ae3d45b2ef3/68747470733a2f2f7477656d6f6a692e6d617863646e2e636f6d2f762f31332e302e312f7376672f31663334392e737667" alt="" />
+                </a>
+            
+            
+          
+
+          
+            <div id="release"></div>
+          
+  
+  <a href="javascript:void(0);" onclick="burger()" id="mobile" class="ms-Icon--GlobalNavButton"></a>
+    <div id="trees">
+               
+            
+                 
+            
+ 
+        <input class="tree-toggle" type="checkbox" id="getting-started" 
+        checked />
+        <label class="tree-toggle-label" for="getting-started">Getting Started</label>
+                        
+        <ul class="subtree">
+                
+                                <li >
+                                    <a href="/melon/getting-started/overview/">Overview</a>
+                                </li>
+
+                            
+    
+                                <li class="active">
+                                    <a href="/melon/getting-started/userchrome/">Userchrome</a>
+                                </li>
+
+                             
+                                
+  
+  
+    
+    
+  
+    
+    
+  
+
+  
+
+                        
+    
+    
+    </ul>         
+    
+                 
+            
+ 
+        <input class="tree-toggle" type="checkbox" id="guides" 
+         />
+        <label class="tree-toggle-label" for="guides">Guides</label>
+                        
+        <ul class="subtree">
+                
+                                <li >
+                                    <a href="/melon/guides/removingpocket/">Removing pocket</a>
+                                </li>
+
+                            
+    
+                                <li >
+                                    <a href="/melon/guides/includingaddons/">Including addons</a>
+                                </li>
+
+                            
+    
+    </ul>         
+    
+    </div>    
+  </nav>
+    
+
+<article>
+ 
+  
+  <div id="on_right">
+    <span id="search-ico" class="ms-Icon--Search"></span>
+  </div>
+    <div class="search-container">
+          <input id="search" type="search" placeholder="Search as you type...">
+            <div class="search-results">
+              <div class="search-results__header"></div>
+                <ul class="search-results__items"></ul>
+              </div>
+    </div>
+         
+
+  <div id="wrap">
+     <p>This page will explain the process for applying custom css (or userchrome) to your new browser. I expect you to have already setup melon as described in the overview and have something that looks like the following on your screen.</p>
+<p><img src="https://cdn.statically.io/img/dothq.github.io/f=auto/melon/images/userchrome/css-basic.png" alt="Firefox build without branding" /></p>
+<p>The firefox window shown above is constructed from (x)html, styled with css and made dynamic with javascript. This means that the entire browser can be styled with custom css, called userchrome.</p>
+<p>If you selected the userchrome option when setting up the project, melon will have already created the theme files for you. <code>src/browser/themes/custom/shared/shared.inc.css</code> will be included on all platforms, whilst platform specific styles will be included from similar files in <code>src/browser/themes/custom</code>.</p>
+<p>Additionally, firefox has an equivalent to &quot;inspect element&quot;, but for the browser. Click on the hamburger menu, select &quot;More tools&quot;, then &quot;Browser toolbox&quot; to open it.</p>
+<p><img src="https://cdn.statically.io/img/dothq.github.io/f=auto/melon/images/userchrome/browser-toolbox.png" alt="Browser toolbox" /></p>
+<h2 id="a-touch-of-design">A touch of design</h2>
+<p>This tutorial will attempt to replicate the design of <a href="https://github.com/migueravila/SimpleFox">SimpleFox by Miguel R. Ávila</a>, without copying its code. I would recommend creating your own visual identity for your browser.</p>
+<h2 id="squaring-the-tabs">Squaring the tabs</h2>
+<p>Firefox's proton made the tabs hover, with mixed reception. Let's reverse that.</p>
+<p>Using the select tool (top left of the browser toolbox) select the active tab and look for what element provides the background. In this case it is the <code>.tab-background</code> element.</p>
+<p>You can scroll down to find the code where the border radius is set. In firefox 91, this is:</p>
+<pre style="background-color:#2b303b;">
+<code class="language-css" data-lang="css"><span style="color:#8fa1b3;">.</span><span style="color:#d08770;">tab-background </span><span style="color:#c0c5ce;">{
+  border-radius: </span><span style="color:#96b5b4;">var</span><span style="color:#c0c5ce;">(--tab-border-radius);
+  margin-block: </span><span style="color:#96b5b4;">var</span><span style="color:#c0c5ce;">(--tab-block-margin);
+}
+</span></code></pre>
+<p>Firefox uses css variables for a lot of its properties, meaning we can make the tabs square by setting the border radius to 0. Here, the margin, which makes the tabs &quot;float is set&quot;, so setting it to zero will cause them to stop floating. This can be done by adding the following line to <code>src/browser/themes/custom/shared/shared.inc.css</code>:</p>
+<pre style="background-color:#2b303b;">
+<code class="language-css" data-lang="css"><span style="color:#8fa1b3;">:</span><span style="color:#b48ead;">root </span><span style="color:#c0c5ce;">{
+  --tab-border-radius: </span><span style="color:#d08770;">0 </span><span style="color:#b48ead;">!important</span><span style="color:#c0c5ce;">;
+  --tab-block-margin: </span><span style="color:#d08770;">0 </span><span style="color:#b48ead;">!important</span><span style="color:#c0c5ce;">;
+}
+</span></code></pre>
+<p>Rebuilding the browser, the tabs are now slightly closer to how we want them.</p>
+<p><img src="https://cdn.statically.io/img/dothq.github.io/f=auto/melon/images/userchrome/css-square-tabs.png" alt="Squared tabs" /></p>
+<p>There is this weird padding to the left of the active tab. This is caused by the following css:</p>
+<pre style="background-color:#2b303b;">
+<code class="language-css" data-lang="css"><span style="color:#8fa1b3;">.</span><span style="color:#d08770;">tabbrowser-tab </span><span style="color:#c0c5ce;">{
+  min-height: </span><span style="color:#96b5b4;">var</span><span style="color:#c0c5ce;">(--tab-min-height);
+  padding-inline: </span><span style="color:#d08770;">2px </span><span style="color:#b48ead;">!important</span><span style="color:#c0c5ce;">;
+}
+</span></code></pre>
+<p>As mozilla are using <code>!important</code> here, we have to use <a href="https://marksheet.io/css-priority.html">css priority</a> to override it, rather than simply creating our own style with <code>!important</code>.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-css" data-lang="css"><span style="color:#8fa1b3;">#tabbrowser-arrowscrollbox .</span><span style="color:#d08770;">tabbrowser-tab </span><span style="color:#c0c5ce;">{
+  padding-inline: </span><span style="color:#d08770;">0 </span><span style="color:#b48ead;">!important</span><span style="color:#c0c5ce;">;
+}
+</span></code></pre>
+<p>Now, I want to remove the &quot;Nightly&quot; pill in the search bar, along with the background of it. Using the browser toolbox, we can figure out that we have to hide <code>#identity-icon-box</code>, remove the border on <code>#urlbar-background</code> and set <code>--toolbar-field-background-color</code> to the value of <code>--toolbar-bgcolor</code>.</p>
+<p><img src="https://cdn.statically.io/img/dothq.github.io/f=auto/melon/images/userchrome/css-final.png" alt="Final browser" /></p>
+<p>I encourage you to experiment and customize your browser to fit what you want your browser to be.</p>
+<p>The source code for this tutorial can be found <a href="https://github.com/trickypr/watermelon">here</a></p>
+ 
+  </div>
+
+</article>
+</main>
+
+  
+  <script type="text/javascript" src="/melon/elasticlunr.min.js" defer></script>
+  <script type="text/javascript" src="/melon/search_index.en.js" defer></script>
+  <script type="text/javascript" src="/melon/js.js" defer></script>
+  
+
+</body>
+</html>

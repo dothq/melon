@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>/melon/</loc>
+    </url>
+    <url>
+        <loc>/melon/getting-started/</loc>
+    </url>
+    <url>
+        <loc>/melon/getting-started/overview/</loc>
+    </url>
+    <url>
+        <loc>/melon/getting-started/userchrome/</loc>
+    </url>
+    <url>
+        <loc>/melon/guides/</loc>
+    </url>
+    <url>
+        <loc>/melon/guides/includingaddons/</loc>
+    </url>
+    <url>
+        <loc>/melon/guides/removingpocket/</loc>
+    </url>
+</urlset>

@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+      <meta charset="UTF-8">
+        <link rel="stylesheet" href="/melon/main.css">
+      
+        <link rel="icon" href="https://www.dothq.co/favicon.png">
+      
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        <title> Overview | Melon docs </title> 
+    </head>
+    <body>
+
+      
+    <script>
+         fetch('https://api.github.com/repos/dothq/melon/releases/latest')
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            let release_name = data.name;
+            let html_url = data.html_url;
+            release.innerHTML = `<a href='${html_url}'>${release_name}</a>`;
+          });
+    </script>
+      
+    <main>
+
+      
+
+        <nav>
+          
+            <a href="&#x2F;melon&#x2F;">
+            <img src="https://camo.githubusercontent.com/d8b2046aa769e171cb4c89d0f86dfb52c7f677ff287c2b5ac9451ae3d45b2ef3/68747470733a2f2f7477656d6f6a692e6d617863646e2e636f6d2f762f31332e302e312f7376672f31663334392e737667" alt="" />
+                </a>
+            
+            
+          
+
+          
+            <div id="release"></div>
+          
+  
+  <a href="javascript:void(0);" onclick="burger()" id="mobile" class="ms-Icon--GlobalNavButton"></a>
+    <div id="trees">
+               
+            
+                 
+            
+ 
+        <input class="tree-toggle" type="checkbox" id="getting-started" 
+        checked />
+        <label class="tree-toggle-label" for="getting-started">Getting Started</label>
+                        
+        <ul class="subtree">
+                
+                                <li class="active">
+                                    <a href="/melon/getting-started/overview/">Overview</a>
+                                </li>
+
+                             
+                                
+  
+  
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+  
+
+  
+      <ul id="toc">
+        
+          <li><a href="/melon/getting-started/overview/#getting-started-with-melon">Getting started with melon</a>
+          
+          <ul>        
+            
+            <li><a href="/melon/getting-started/overview/#what-is-melon">What is melon</a></li>
+            
+            <li><a href="/melon/getting-started/overview/#getting-help">Getting help</a></li>
+            
+            <li><a href="/melon/getting-started/overview/#system-requirements">System requirements</a></li>
+            
+            <li><a href="/melon/getting-started/overview/#getting-started">Getting started</a></li>
+            
+         </ul>
+    
+        </li>
+    
+      </ul>
+    
+
+                        
+    
+    
+                                <li >
+                                    <a href="/melon/getting-started/userchrome/">Userchrome</a>
+                                </li>
+
+                            
+    
+    </ul>         
+    
+                 
+            
+ 
+        <input class="tree-toggle" type="checkbox" id="guides" 
+         />
+        <label class="tree-toggle-label" for="guides">Guides</label>
+                        
+        <ul class="subtree">
+                
+                                <li >
+                                    <a href="/melon/guides/removingpocket/">Removing pocket</a>
+                                </li>
+
+                            
+    
+                                <li >
+                                    <a href="/melon/guides/includingaddons/">Including addons</a>
+                                </li>
+
+                            
+    
+    </ul>         
+    
+    </div>    
+  </nav>
+    
+
+<article>
+ 
+  
+  <div id="on_right">
+    <span id="search-ico" class="ms-Icon--Search"></span>
+  </div>
+    <div class="search-container">
+          <input id="search" type="search" placeholder="Search as you type...">
+            <div class="search-results">
+              <div class="search-results__header"></div>
+                <ul class="search-results__items"></ul>
+              </div>
+    </div>
+         
+
+  <div id="wrap">
+     <h2 id="getting-started-with-melon">Getting started with melon</h2>
+<h3 id="what-is-melon">What is melon</h3>
+<p>Melon is a build tool and documentation for creating firefox-based browsers. Its goal is to simplify the process of creating web browsers to encourage competition and development within the space.</p>
+<h3 id="getting-help">Getting help</h3>
+<p>If you are having problems with following these instructions, or with melon in general, please contact us. You can <a href="https://github.com/dothq/melon/discussions/new">create a discussion on github</a>, ping @trickypr on the <a href="https://dothq.link/dsc">Dot HQ discord</a>, or <a href="https://dothq.link/matrix">join our Matrix chat</a>.</p>
+<h3 id="system-requirements">System requirements</h3>
+<ul>
+<li><strong>OS</strong>: Linux, Windows, MacOS (We only have active contributors on linux, so other platforms might be a touch buggy)</li>
+<li><strong>Melon dependencies</strong>: NodeJS and npm</li>
+<li><strong>Browser dependencies</strong>: TODO: find out what firefox's build dependencies are</li>
+</ul>
+<h3 id="getting-started">Getting started</h3>
+<p>The first thing you are going to need to do is to install melon. As it is a nodejs program it can be installed through npm or yarn.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-sh" data-lang="sh"><span style="color:#bf616a;">npm</span><span style="color:#c0c5ce;"> install</span><span style="color:#bf616a;"> -g</span><span style="color:#c0c5ce;"> melon-build
+</span><span style="color:#65737e;"># or
+</span><span style="color:#c0c5ce;">yarn global add melon-build
+
+</span><span style="color:#65737e;"># Note: Linux and mac users may have to run the above command with sudo
+</span></code></pre>
+<p>Now create a git repo and clone it to your local machine. Then run <code>melon setup-project</code> inside of that repo. This will ask you a variety of questions in relation to your project setup. Firstly, the release of the browser you want to bind to.</p>
+<ul>
+<li><code>Firefox nightly</code>: Updates every 12 hours, making it almost impossible to keep up to date <strong>(not recommended)</strong></li>
+<li><code>Firefox beta</code>: Updates every 4 weeks. It will have unresolved bugs <strong>(not recommended)</strong></li>
+<li><code>Firefox developer edition</code>: Tracks firefox beta <strong>(not recommended)</strong></li>
+<li><code>Firefox stable</code>: Releases around every 4 weeks, however has most of the bugs from beta fixed</li>
+<li><code>Firefox extended support release (newer)</code>: The latest extended support release. Releases around once every 8 stable cycles (mozilla isn't clear on this). Receives regular small security patches and bug fixes, but no large breaking changes (e.g. <a href="https://www.omgubuntu.co.uk/2021/02/try-firefox-proton-redesign-ubuntu">proton</a>) between releases.</li>
+<li><code>Firefox extended support release (newer)</code>: The oldest supported extended support release. Maximum security and stability, but will lose support sooner than the newer extended support release.</li>
+</ul>
+<p>Dot browser currently uses the stable releases, and keeping up to date can be a struggle with a small development team.</p>
+<p>Then next is the version of the browser you want to use. By default melon will populate this with the latest version available, which we recommend using.</p>
+<p>Next it will ask for the name of your browser. Avoid references to firefox or other mozilla brands if you can.</p>
+<p>Vendor is the company (or solo developer) who is creating the browser.</p>
+<p>The appid follows reverse dns naming conventions. For example, DotHQ owns the domain <code>dothq.co</code>, so our browser is <code>co.dothq.browser</code>. If you do not have a domain, you can use your username / psudomim as the appid, e.g. <code>trickypr.watermelon</code>.</p>
+<p>Next you need to chose a starting template for your browser. You can go with userchrome, where you apply css changes to firefox or custom html, where you have to write everything (tabs, navigation, search boxes) yourself. We generally recommend userchrome for new users, as it has the lowest learning curve. Additionally, you can chose to use no template.</p>
+<p>Now you have created the directory structure for your project, you can build it for the first time. First, ask melon to download the firefox source.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-sh" data-lang="sh"><span style="color:#bf616a;">melon</span><span style="color:#c0c5ce;"> download
+</span></code></pre>
+<p>After the source code has been downloaded, the changes to firefox described in the source code must be applied.</p>
+<pre style="background-color:#2b303b;">
+<code class="language-sh" data-lang="sh"><span style="color:#bf616a;">melon</span><span style="color:#c0c5ce;"> import
+</span></code></pre>
+<p>Finally, you can start building the firefox source code. This takes around an hour and a half on my computer, but the binary output will be cached, making later builds faster</p>
+<pre style="background-color:#2b303b;">
+<code class="language-sh" data-lang="sh"><span style="color:#bf616a;">melon</span><span style="color:#c0c5ce;"> build
+</span></code></pre>
+<p>Now you can finally start the browser!</p>
+<pre style="background-color:#2b303b;">
+<code class="language-sh" data-lang="sh"><span style="color:#bf616a;">melon</span><span style="color:#c0c5ce;"> run
+</span></code></pre> 
+  </div>
+
+</article>
+</main>
+
+  
+  <script type="text/javascript" src="/melon/elasticlunr.min.js" defer></script>
+  <script type="text/javascript" src="/melon/search_index.en.js" defer></script>
+  <script type="text/javascript" src="/melon/js.js" defer></script>
+  
+
+</body>
+</html>

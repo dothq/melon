@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+      <meta charset="UTF-8">
+        <link rel="stylesheet" href="/melon/main.css">
+      
+        <link rel="icon" href="https://www.dothq.co/favicon.png">
+      
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+        <title>Melon docs</title> 
+    </head>
+    <body>
+
+      
+    <script>
+         fetch('https://api.github.com/repos/dothq/melon/releases/latest')
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            let release_name = data.name;
+            let html_url = data.html_url;
+            release.innerHTML = `<a href='${html_url}'>${release_name}</a>`;
+          });
+    </script>
+      
+    <main>
+
+      
+
+        <nav>
+          
+            
+            <img src="https://camo.githubusercontent.com/d8b2046aa769e171cb4c89d0f86dfb52c7f677ff287c2b5ac9451ae3d45b2ef3/68747470733a2f2f7477656d6f6a692e6d617863646e2e636f6d2f762f31332e302e312f7376672f31663334392e737667" alt="" />
+
+            
+            
+          
+
+          
+            <div id="release"></div>
+          
+  
+  <a href="javascript:void(0);" onclick="burger()" id="mobile" class="ms-Icon--GlobalNavButton"></a>
+    <div id="trees">
+               
+            
+                 
+            
+ 
+        <input class="tree-toggle" type="checkbox" id="getting-started" 
+         />
+        <label class="tree-toggle-label" for="getting-started">Getting Started</label>
+                        
+        <ul class="subtree">
+                
+                                <li >
+                                    <a href="/melon/getting-started/overview/">Overview</a>
+                                </li>
+
+                            
+    
+                                <li >
+                                    <a href="/melon/getting-started/userchrome/">Userchrome</a>
+                                </li>
+
+                            
+    
+    </ul>         
+    
+                 
+            
+ 
+        <input class="tree-toggle" type="checkbox" id="guides" 
+         />
+        <label class="tree-toggle-label" for="guides">Guides</label>
+                        
+        <ul class="subtree">
+                
+                                <li >
+                                    <a href="/melon/guides/removingpocket/">Removing pocket</a>
+                                </li>
+
+                            
+    
+                                <li >
+                                    <a href="/melon/guides/includingaddons/">Including addons</a>
+                                </li>
+
+                            
+    
+    </ul>         
+    
+    </div>    
+  </nav>
+    
+
+<article>
+ 
+  
+  <div id="on_right">
+    <span id="search-ico" class="ms-Icon--Search"></span>
+  </div>
+    <div class="search-container">
+          <input id="search" type="search" placeholder="Search as you type...">
+            <div class="search-results">
+              <div class="search-results__header"></div>
+                <ul class="search-results__items"></ul>
+              </div>
+    </div>
+         
+
+  <div id="wrap">
+    
+      <h2 id="welcome-to-the-melon-docs">Welcome to the melon docs&nbsp;<a class="anchor" href="#welcome-to-the-melon-docs">&#xE732;</a></h2>
+<p>If you are new here, you should read the <a href="./getting-started/overview/">Getting Started</a> guide.</p>
+
+    
+  </div>
+
+</article>
+</main>
+
+  
+  <script type="text/javascript" src="/melon/elasticlunr.min.js" defer></script>
+  <script type="text/javascript" src="/melon/search_index.en.js" defer></script>
+  <script type="text/javascript" src="/melon/js.js" defer></script>
+  
+
+</body>
+</html>

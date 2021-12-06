@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: /melon/sitemap.xml
