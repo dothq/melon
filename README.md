@@ -1,3 +1,7 @@
+# Depreciation
+
+This project is no longer used or maintained by Dot HQ. The [Pulse Browser](https://pulsebrowser.app/) developers [maintain and support a fork](https://github.com/pulse-browser/gluon).
+
 <div align="center">
 
 <p align="center">
